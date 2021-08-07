@@ -99,6 +99,8 @@ class VideoCaptured:
         while True:
             # Capture frame-by-frame
             ret, frame = self.cap.read()
+            print(ret)
+            print('-----')
             # if frame is read correctly ret is True
             if not ret:
                 print("Can't receive frame (stream end?). Exiting ...")
