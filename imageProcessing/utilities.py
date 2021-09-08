@@ -17,7 +17,7 @@ class VideoCaptured:
         if not self.stream:
             self.frames = self.get_all_frames()
 
-    def model_conf(self, conf=0.3, iou=0.45, classes=None):
+    def model_conf(self, conf=0.5, iou=0.45, classes=[0]):
         self.model.conf = conf
         self.model.iou = iou
         self.model.classes = classes
@@ -109,12 +109,13 @@ class VideoCaptured:
             # gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
             # Display the resulting frame
             if recognize:
-                frame = self.square_operations(self.score_frame(frame), frame, mode)
+                results = self.score_frame(frame)
+                frame = self.square_operations(results, frame, mode)
             if mode == 'cut':
                 cv2.imshow('frame', frame[0])
             else:
                 cv2.imshow('frame', frame)
-
+            print(results)
             if cv2.waitKey(1) == ord('q'):
                 break
         # When everything done, release the capture

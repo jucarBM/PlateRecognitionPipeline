@@ -19,7 +19,7 @@ if __name__ == '__main__':
     # Model configuration
     modelType = 'yolov5s'
     # Video
-    # cap = cv2.VideoCapture("rtsp://admin:123@172.14.10.1/ch0_0.264")
+    # cap = cv2.VideoCapture("rtsp://192.168.1.109:554/11")
     # cap = cv2.VideoCapture("rtsp://admin:123@169.254.249.184/ch0_0.264")
 
     cap = cv2.VideoCapture(0)
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     # cap = cv2.VideoCapture(2)
     video = VideoCaptured(cap, 'testCamera', modelType, stream=True)
     # video.model_conf(classes=[[2, 3, 5, 7]])
-    video.stream_video(recognize=False, mode='notcut')
+    video.stream_video(recognize=True, mode='draw')
     # video.play_video(recognize=True, mode='cut', save=True)
 
 
