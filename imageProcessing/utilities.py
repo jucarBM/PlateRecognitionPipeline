@@ -226,7 +226,7 @@ class FramesSended:
             return None
         while True:
             # Capture frame-by-frame
-            datetime.datetime.now()
+            # datetime.datetime.now()
             # frameRate = self.cap.get(5)  # frame rate
             ret, frame = self.cap.read()
             frameId = self.cap.get(1)  # current frame number
@@ -248,6 +248,7 @@ class FramesSended:
             if labels:
                 fileName = date.strftime('%Y%m%d') + date.strftime('_%H%M%S_') + str(labels[0]) \
                            + '_' + str(frameId) + '.jpg'
+                # 20210910_223423_car_323773.jpg
                 # print(fileName)
                 destinationPath = str(self.rbpiID) + '/' + date.strftime('%Y') + '/' + date.strftime('%m') + \
                                   '/' + date.strftime('%d') + '/' + fileName

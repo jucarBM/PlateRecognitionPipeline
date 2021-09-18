@@ -24,6 +24,9 @@ if __name__ == '__main__':
 
     cap = cv2.VideoCapture(0)
 
-    video = FramesSended(cap, rbpiID, modelType, bucketName)
+    # video = FramesSended(cap, rbpiID, modelType, bucketName)
+    # video.start_process()
 
-    video.start_process()
+    video = VideoCaptured(cap, rbpiID, modelType, stream=True)
+    video.stream_video(recognize=False, mode='draw')
+
