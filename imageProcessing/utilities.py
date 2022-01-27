@@ -39,7 +39,7 @@ class VideoCaptured:
         return frames
 
     def score_frame(self, frame):
-        results = self.model(frame, size=640)
+        results = self.model(frame, size=1080)
         labels = results.xyxyn[0][:, -1].numpy()
         labels_string = results.pandas().xyxyn[0]['name'].to_list()
         cords = results.xyxyn[0][:, :-1].numpy()
@@ -102,7 +102,14 @@ class VideoCaptured:
         if not self.cap.isOpened():
             print("Cannot open camera")
             return None
+
+        count = 0
+        path = 'results/' + self.testname
+        if not os.path.isdir(path):
+            os.makedirs(path)
+
         while True:
+
             # Capture frame-by-frame
             ret, frame = self.cap.read()
             print(ret)
@@ -116,12 +123,18 @@ class VideoCaptured:
             # Display the resulting frame
             if recognize:
                 results = self.score_frame(frame)
-                frame = self.square_operations(results, frame, mode)
+                if results[1]:
+                    frame = self.square_operations(results, frame, mode)
+                    filename = path + '/' + str(count) + '.jpg'
+                    cv2.imwrite(filename, frame)
+                    count += 1
+                    print('Found!!' + results[1])
+
             if mode == 'cut':
                 cv2.imshow('frame', frame[0])
             else:
                 cv2.imshow('frame', frame)
-            print(results)
+            # print(results)
             if cv2.waitKey(1) == ord('q'):
                 break
         # When everything done, release the capture

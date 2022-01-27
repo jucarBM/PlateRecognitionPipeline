@@ -19,10 +19,11 @@ if __name__ == '__main__':
     # Model configuration
     modelType = 'yolov5s6'
     # Video
-    # cap = cv2.VideoCapture("rtsp://192.168.1.109:554/11")
-    # cap = cv2.VideoCapture("rtsp://admin:123@169.254.249.184/ch0_0.264")
+    # cap = cv2.VideoCapture("rtsp://192.168.1.109:554/ch0_0.264")
+    cap = cv2.VideoCapture("rtsp://admin:admin@192.168.1.109:554/11")
 
-    cap = cv2.VideoCapture(0)
+
+    # cap = cv2.VideoCapture(0)
 
     # video = FramesSended(cap, rbpiID, modelType, bucketName)
     # video.start_process()
